@@ -1,0 +1,22 @@
+[package]
+name = "rwe"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "Run a program with extra environment variables, via a renamed copy on PATH"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_System_Console",
+    "Win32_System_JobObjects",
+    "Win32_System_Threading",
+] }
+
+[profile.release]
+codegen-units = 1
+strip = true
+opt-level = "z"
+lto = true
+panic = "abort"
